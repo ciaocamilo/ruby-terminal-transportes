@@ -1,0 +1,43 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: left;
+}
+</style>
+
+<h1>Listado de vehículos</h1>
+
+<% if !@vehicles.empty? %>
+<table>
+  <thead>
+    <tr>
+      <th>Placa</th>
+      <th>Conductor</th>
+      <th>Tipo</th>
+      <th>Estado</th>
+      <th>Eliminar</th>
+      <th>Actualizar</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @vehicles.each do |vehicle| %>
+  <tr>
+    <td><%= vehicle.placa %></td>
+    <td><%= vehicle.conductor %></td>
+    <td><%= vehicle.tipo %></td>
+    <td><%= vehicle.estado %></td>
+    <td><a href="/vehicle/delete/<%= vehicle.id %>">Eliminar</a></td>
+    <td><a href="/vehicle/update/<%= vehicle.id %>">Actualizar</a></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p>Vehículo no encontrado</p>
+<% end %>
+
+<br/>
+<a href="/vehicle/create">Crear nuevo vehículo</a><br>
+<a href="/">Menú principal</a>

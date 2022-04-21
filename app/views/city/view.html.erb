@@ -1,0 +1,27 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+<h1>Ciudad creada o modificada</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Nombre:</th>
+      <td><%= @city.nombre %></td>
+    </tr>
+    <tr>
+      <th>Estado:</th>
+      <td><%= @city.estado %></td>
+    </tr>
+  </tbody>
+</table>
+
+<br/>
+<a href="/city/show">Ver todos</a> -
+<a href="/city/update/<%= @city.id %>">Modificar</a>

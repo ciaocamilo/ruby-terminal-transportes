@@ -1,0 +1,31 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+<h1>Crear Ciudad:</h1>
+
+<%= form_tag(nil, method: "post") do %>
+
+<table>
+  <tbody>
+    <tr>
+      <th><%= label_tag(:nombre, "Nombre:") %></th>
+      <td><%= text_field_tag(:nombre, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:estado, "Estado:") %></th>
+      <td><%= text_field_tag(:estado, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= submit_tag("Crear") %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>

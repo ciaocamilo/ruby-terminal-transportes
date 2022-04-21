@@ -1,0 +1,35 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+<h1>Vehículo creado o modificado</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Placa:</th>
+      <td><%= @vehicle.placa %></td>
+    </tr>
+    <tr>
+      <th>Conductor:</th>
+      <td><%= @vehicle.conductor %></td>
+    </tr>
+    <tr>
+      <th>Tipo vehículo:</th>
+      <td><%= @vehicle.tipo %></td>
+    </tr>
+    <tr>
+      <th>Estado:</th>
+      <td><%= @vehicle.estado %></td>
+    </tr>
+  </tbody>
+</table>
+
+<br/>
+<a href="/vehicle/show">Ver todos</a> -
+<a href="/vehicle/update/<%= @vehicle.id %>">Modificar</a>

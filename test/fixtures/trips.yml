@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_hora: MyString
+  valor_pasaje: 1
+  estado: MyString
+  origin_id: 1
+  destiny_id: 1
+  vehicle_id: 1
+
+two:
+  fecha_hora: MyString
+  valor_pasaje: 1
+  estado: MyString
+  origin_id: 1
+  destiny_id: 1
+  vehicle_id: 1

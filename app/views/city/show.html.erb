@@ -1,0 +1,37 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: left;
+}
+</style>
+
+<h1>Listado de ciudades</h1>
+
+<% if !@cities.empty? %>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @cities.each do |city| %>
+  <tr>
+    <td><%= city.nombre %></td>
+    <td><%= city.estado %></td>
+    <td><a href="/city/delete/<%= city.id %>">Eliminar</a></td>
+    <td><a href="/city/update/<%= city.id %>">Actualizar</a></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  <p>Ciudad no encontrada</p>
+<% end %>
+
+<br/>
+<a href="/city/create">Crear nueva ciudad</a><br>
+<a href="/">Menú principal</a>

@@ -1,0 +1,47 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+<h1>Crear Viaje:</h1>
+
+<%= form_tag(nil, method: "post") do %>
+
+<table>
+  <tbody>
+    <tr>
+      <th><%= label_tag(:fecha_hora, "Fecha y hora:") %></th>
+      <td><%= text_field_tag(:fecha_hora, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:valor_pasaje, "Valor del pasaje:") %></th>
+      <td><%= text_field_tag(:valor_pasaje, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:vehicle_id, "Tipo vehículo:") %></th>
+      <td><%= text_field_tag(:vehicle_id, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:origin_id, "Ciudad Origen:") %></th>
+      <td><%= text_field_tag(:origin_id, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:destiny_id, "Ciudad Destino:") %></th>
+      <td><%= text_field_tag(:destiny_id, nil, :required => true) %></td>
+    </tr>
+        <tr>
+      <th><%= label_tag(:estado, "Estado:") %></th>
+      <td><%= text_field_tag(:estado, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= submit_tag("Crear") %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>

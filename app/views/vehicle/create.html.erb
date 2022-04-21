@@ -1,0 +1,39 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+<h1>Crear Vehículo:</h1>
+
+<%= form_tag(nil, method: "post") do %>
+
+<table>
+  <tbody>
+    <tr>
+      <th><%= label_tag(:placa, "Placa:") %></th>
+      <td><%= text_field_tag(:placa, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:conductor, "Conductor:") %></th>
+      <td><%= text_field_tag(:conductor, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:tipo, "Tipo vehículo:") %></th>
+      <td><%= text_field_tag(:tipo, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th><%= label_tag(:estado, "Estado:") %></th>
+      <td><%= text_field_tag(:estado, nil, :required => true) %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= submit_tag("Crear") %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>
