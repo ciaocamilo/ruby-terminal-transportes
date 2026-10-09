@@ -1,27 +1,14 @@
 Rails.application.routes.draw do
- 
-  post 'city/create'
-  get 'city/view/:id', to: 'city#view'
-  get 'city/show', to: 'city#show'
-  get 'city/delete/:id', to: 'city#delete'
-  post 'city/update/:id', to: 'city#update'
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  get 'vehicle/create'
-  post 'vehicle/create'
-  get 'vehicle/view/:id', to: 'vehicle#view'
-  get 'vehicle/show', to: 'vehicle#show'
-  get 'vehicle/delete/:id', to: 'vehicle#delete'
-  get 'vehicle/update/:id', to: 'vehicle#update'
-  post 'vehicle/update/:id', to: 'vehicle#update'
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "up" => "rails/health#show", as: :rails_health_check
 
-  post 'trip/create'
-  get 'trip/view/:id', to: 'trip#view'
-  get 'trip/show', to: 'trip#show'
-  get 'trip/delete/:id', to: 'trip#delete'
-  post 'trip/update/:id', to: 'trip#update'
+  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
+  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  get 'welcome/index'
-  root 'welcome#index'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Defines the root path route ("/")
+  # root "posts#index"
 end
