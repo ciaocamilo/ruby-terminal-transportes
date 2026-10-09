@@ -1,0 +1,38 @@
+<% content_for :title, "Vehículos" %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold">Vehículos</h1>
+  <%= link_to "Nuevo vehículo", new_vehicle_path, class: "btn btn-primary" if admin? %>
+</div>
+
+<% if @vehicles.any? %>
+  <div class="card overflow-x-auto p-0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Placa</th>
+          <th>Conductor</th>
+          <th>Tipo</th>
+          <th>Capacidad</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @vehicles.each do |vehicle| %>
+          <tr id="<%= dom_id vehicle %>">
+            <td><%= link_to vehicle.plate, vehicle, class: "font-medium text-blue-600 hover:underline" %></td>
+            <td><%= vehicle.driver %></td>
+            <td><%= enum_label(vehicle, :kind, vehicle.kind) %></td>
+            <td><%= vehicle.capacity %></td>
+            <td><%= status_badge vehicle %></td>
+            <td class="text-right"><%= link_to "Editar", edit_vehicle_path(vehicle), class: "text-blue-600 hover:underline" if admin? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= pagination @pagy %>
+<% else %>
+  <p class="py-10 text-center text-gray-500">No hay vehículos registrados.</p>
+<% end %>

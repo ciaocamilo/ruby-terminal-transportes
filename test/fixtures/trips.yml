@@ -1,17 +1,23 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+bogota_medellin:
+  origin: bogota
+  destination: medellin
+  vehicle: bus
+  departure_at: <%= 2.days.from_now.change(hour: 8) %>
+  fare: 80000
+  status: scheduled
 
-one:
-  fecha_hora: MyString
-  valor_pasaje: 1
-  estado: MyString
-  origin_id: 1
-  destiny_id: 1
-  vehicle_id: 1
+bogota_cali_van:
+  origin: bogota
+  destination: cali
+  vehicle: van
+  departure_at: <%= 3.days.from_now.change(hour: 10) %>
+  fare: 95000
+  status: scheduled
 
-two:
-  fecha_hora: MyString
-  valor_pasaje: 1
-  estado: MyString
-  origin_id: 1
-  destiny_id: 1
-  vehicle_id: 1
+finished:
+  origin: medellin
+  destination: bogota
+  vehicle: bus
+  departure_at: <%= 2.days.ago.change(hour: 8) %>
+  fare: 80000
+  status: finished

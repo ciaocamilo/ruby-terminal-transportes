@@ -1,9 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+bogota:
+  name: Bogotá
+  status: active
 
-one:
-  nombre: MyString
-  estado: MyString
+medellin:
+  name: Medellín
+  status: active
 
-two:
-  nombre: MyString
-  estado: MyString
+cali:
+  name: Cali
+  status: active
+
+tunja:
+  name: Tunja
+  status: inactive

@@ -1,0 +1,23 @@
+<% content_for :title, "Iniciar sesión" %>
+
+<div class="mx-auto mt-12 max-w-md">
+  <h1 class="mb-2 text-center text-3xl font-bold text-blue-700">Terminal de Transportes</h1>
+  <p class="mb-6 text-center text-gray-600">Inicia sesión para continuar</p>
+
+  <%= form_with url: session_url, class: "card space-y-5" do |form| %>
+    <div>
+      <%= form.label :email_address, "Correo electrónico", class: "label" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address], class: "input" %>
+    </div>
+
+    <div>
+      <%= form.label :password, "Contraseña", class: "label" %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72, class: "input" %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit "Ingresar", class: "btn btn-primary" %>
+      <%= link_to "¿Olvidaste tu contraseña?", new_password_path, class: "text-sm text-gray-600 underline hover:no-underline" %>
+    </div>
+  <% end %>
+</div>

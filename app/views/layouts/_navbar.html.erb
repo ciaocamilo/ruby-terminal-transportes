@@ -1,0 +1,18 @@
+<header class="border-b border-gray-200 bg-white print:hidden">
+  <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+    <div class="flex flex-wrap items-center gap-4">
+      <%= link_to "Terminal de Transportes", root_path, class: "text-lg font-bold text-blue-700" %>
+      <div class="flex flex-wrap gap-1">
+        <%= nav_link "Viajes", trips_path %>
+        <%= nav_link "Vehículos", vehicles_path %>
+        <%= nav_link "Ciudades", cities_path %>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 text-sm">
+      <span class="text-gray-600">
+        <%= Current.user.email_address %> · <%= enum_label(Current.user, :role, Current.user.role) %>
+      </span>
+      <%= button_to "Salir", session_path, method: :delete, class: "btn btn-secondary" %>
+    </div>
+  </nav>
+</header>

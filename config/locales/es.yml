@@ -1,0 +1,111 @@
+es:
+  number:
+    currency:
+      format:
+        unit: "$"
+        format: "%u %n"
+        precision: 0
+        delimiter: "."
+        separator: ","
+  activerecord:
+    models:
+      city:
+        one: Ciudad
+        other: Ciudades
+      vehicle:
+        one: Vehículo
+        other: Vehículos
+      trip:
+        one: Viaje
+        other: Viajes
+      booking:
+        one: Pasaje
+        other: Pasajes
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      city:
+        name: Nombre
+        status: Estado
+        departures: viajes de salida
+        arrivals: viajes de llegada
+      vehicle:
+        plate: Placa
+        driver: Conductor
+        kind: Tipo
+        capacity: Capacidad
+        status: Estado
+        trips: viajes
+      trip:
+        departure_at: Fecha y hora de salida
+        fare: Valor del pasaje
+        status: Estado
+        vehicle: Vehículo
+        vehicle_id: Vehículo
+        origin: Ciudad origen
+        origin_id: Ciudad origen
+        destination: Ciudad destino
+        destination_id: Ciudad destino
+        bookings: pasajes
+      booking:
+        trip: Viaje
+        user: Vendedor
+        passenger_name: Nombre del pasajero
+        passenger_document: Documento del pasajero
+        seat_number: Asiento
+        status: Estado
+      user:
+        email_address: Correo electrónico
+        password: Contraseña
+        role: Rol
+        bookings: pasajes
+    errors:
+      models:
+        vehicle:
+          attributes:
+            capacity:
+              below_booked_seats: "no puede ser menor que el asiento %{seat}, que ya está vendido en un viaje programado"
+        trip:
+          attributes:
+            destination:
+              same_as_origin: debe ser diferente a la ciudad origen
+            vehicle:
+              unavailable: no está disponible
+        booking:
+          attributes:
+            seat_number:
+              exceeds_capacity: "debe estar entre 1 y %{capacity}"
+              taken: ya está ocupado
+            trip:
+              not_bookable: no admite más ventas
+  enums:
+    city:
+      status:
+        active: Activa
+        inactive: Inactiva
+    vehicle:
+      kind:
+        bus: Bus
+        buseta: Buseta
+        microbus: Microbús
+        van: Van
+      status:
+        available: Disponible
+        maintenance: En mantenimiento
+        inactive: Inactivo
+    trip:
+      status:
+        scheduled: Programado
+        in_progress: En curso
+        finished: Finalizado
+        cancelled: Cancelado
+    booking:
+      status:
+        reserved: Reservado
+        paid: Pagado
+        cancelled: Cancelado
+    user:
+      role:
+        seller: Vendedor
+        admin: Administrador

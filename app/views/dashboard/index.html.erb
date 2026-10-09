@@ -1,0 +1,23 @@
+<% content_for :title, "Panel" %>
+
+<h1 class="mb-6 text-3xl font-bold">Panel</h1>
+
+<div class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <% [ [ "Viajes programados hoy", @trips_today ],
+       [ "Pasajes vendidos hoy", @bookings_today ],
+       [ "Vehículos disponibles", @available_vehicles ],
+       [ "Ciudades activas", @active_cities ] ].each do |label, value| %>
+    <div class="card">
+      <p class="text-sm text-gray-500"><%= label %></p>
+      <p class="mt-1 text-3xl font-bold"><%= value %></p>
+    </div>
+  <% end %>
+</div>
+
+<section class="card">
+  <div class="mb-4 flex items-center justify-between">
+    <h2 class="text-lg font-semibold">Próximos viajes</h2>
+    <%= link_to "Ver todos", trips_path, class: "text-sm text-blue-600 hover:underline" %>
+  </div>
+  <%= render "trips/table", trips: @upcoming_trips %>
+</section>

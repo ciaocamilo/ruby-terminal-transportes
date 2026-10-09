@@ -1,0 +1,30 @@
+<% if trips.any? %>
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Salida</th>
+          <th>Ruta</th>
+          <th>Vehículo</th>
+          <th>Valor</th>
+          <th>Cupos libres</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% trips.each do |trip| %>
+          <tr id="<%= dom_id trip %>">
+            <td><%= link_to l(trip.departure_at, format: :short), trip, class: "font-medium text-blue-600 hover:underline", data: { turbo_frame: "_top" } %></td>
+            <td><%= trip.route %></td>
+            <td><%= trip.vehicle.plate %></td>
+            <td><%= number_to_currency trip.fare %></td>
+            <td><%= trip.seats_left %> / <%= trip.vehicle.capacity %></td>
+            <td><%= status_badge trip %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="py-6 text-center text-gray-500">No hay viajes para mostrar.</p>
+<% end %>

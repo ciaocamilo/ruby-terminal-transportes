@@ -1,0 +1,36 @@
+<% content_for :title, "Vender pasaje" %>
+<% free_seats = (1..@trip.vehicle.capacity).to_a - @trip.taken_seats %>
+
+<h1 class="text-3xl font-bold">Vender pasaje</h1>
+<p class="mb-6 mt-1 text-gray-600"><%= @trip.route %> · <%= l @trip.departure_at, format: :long %> · <%= number_to_currency @trip.fare %></p>
+
+<%= form_with model: [ @trip, @booking ], class: "card max-w-2xl space-y-5" do |form| %>
+  <%= render "shared/form_errors", record: @booking %>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <%= form.label :passenger_name, class: "label" %>
+      <%= form.text_field :passenger_name, required: true, autofocus: true, class: field_classes(@booking, :passenger_name) %>
+    </div>
+
+    <div>
+      <%= form.label :passenger_document, class: "label" %>
+      <%= form.text_field :passenger_document, required: true, class: field_classes(@booking, :passenger_document) %>
+    </div>
+
+    <div>
+      <%= form.label :seat_number, class: "label" %>
+      <%= form.select :seat_number, free_seats, { prompt: "Seleccione…" }, required: true, class: field_classes(@booking, :seat_number) %>
+    </div>
+
+    <div>
+      <%= form.label :status, class: "label" %>
+      <%= form.select :status, enum_options(Booking, :status).reject { |_, key| key == "cancelled" }, {}, class: field_classes(@booking, :status) %>
+    </div>
+  </div>
+
+  <div class="flex gap-3">
+    <%= form.submit "Vender", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", @trip, class: "btn btn-secondary" %>
+  </div>
+<% end %>

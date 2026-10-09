@@ -1,0 +1,10 @@
+<% if record.errors.any? %>
+  <div id="error_explanation" class="rounded-md bg-red-50 px-4 py-3 text-sm text-red-800">
+    <p class="font-medium">No se pudo guardar por <%= pluralize(record.errors.count, "error", plural: "errores") %>:</p>
+    <ul class="mt-2 ml-5 list-disc">
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

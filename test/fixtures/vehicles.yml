@@ -1,13 +1,20 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+bus:
+  plate: ABC123
+  driver: Carlos Pérez
+  kind: bus
+  capacity: 40
+  status: available
 
-one:
-  placa: MyString
-  conductor: MyString
-  tipo: MyString
-  estado: MyString
+van:
+  plate: XYZ789
+  driver: Ana Torres
+  kind: van
+  capacity: 2
+  status: available
 
-two:
-  placa: MyString
-  conductor: MyString
-  tipo: MyString
-  estado: MyString
+broken:
+  plate: DEF456
+  driver: Jorge Ramírez
+  kind: buseta
+  capacity: 20
+  status: maintenance

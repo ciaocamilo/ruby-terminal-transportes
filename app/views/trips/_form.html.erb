@@ -1,0 +1,40 @@
+<%= form_with model: trip, class: "card max-w-2xl space-y-5" do |form| %>
+  <%= render "shared/form_errors", record: trip %>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <%= form.label :origin_id, class: "label" %>
+      <%= form.collection_select :origin_id, @cities, :id, :name, { prompt: "Seleccione…" }, required: true, class: field_classes(trip, :origin) %>
+    </div>
+
+    <div>
+      <%= form.label :destination_id, class: "label" %>
+      <%= form.collection_select :destination_id, @cities, :id, :name, { prompt: "Seleccione…" }, required: true, class: field_classes(trip, :destination) %>
+    </div>
+
+    <div>
+      <%= form.label :departure_at, class: "label" %>
+      <%= form.datetime_field :departure_at, required: true, class: field_classes(trip, :departure_at) %>
+    </div>
+
+    <div>
+      <%= form.label :fare, class: "label" %>
+      <%= form.number_field :fare, required: true, min: 0, step: 100, class: field_classes(trip, :fare) %>
+    </div>
+
+    <div>
+      <%= form.label :vehicle_id, class: "label" %>
+      <%= form.collection_select :vehicle_id, @vehicles, :id, :to_s, { prompt: "Seleccione…" }, required: true, class: field_classes(trip, :vehicle) %>
+    </div>
+
+    <div>
+      <%= form.label :status, class: "label" %>
+      <%= form.select :status, enum_options(Trip, :status), {}, class: field_classes(trip, :status) %>
+    </div>
+  </div>
+
+  <div class="flex gap-3">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", trip.persisted? ? trip : trips_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

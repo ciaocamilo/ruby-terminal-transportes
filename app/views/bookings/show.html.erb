@@ -1,0 +1,37 @@
+<% content_for :title, "Pasaje ##{@booking.id}" %>
+
+<article id="ticket" class="card mx-auto max-w-md print:border-0 print:shadow-none">
+  <header class="flex items-start justify-between border-b border-dashed border-gray-300 pb-4">
+    <div>
+      <p class="text-xs uppercase tracking-wide text-gray-500">Terminal de Transportes</p>
+      <h1 class="text-2xl font-bold">Pasaje #<%= @booking.id %></h1>
+    </div>
+    <%= status_badge @booking %>
+  </header>
+
+  <dl class="grid grid-cols-2 gap-4 py-4 text-sm">
+    <div class="col-span-2"><dt class="text-gray-500">Ruta</dt><dd class="text-lg font-semibold"><%= @trip.route %></dd></div>
+    <div class="col-span-2"><dt class="text-gray-500">Salida</dt><dd class="font-medium"><%= l @trip.departure_at, format: :long %></dd></div>
+    <div><dt class="text-gray-500">Pasajero</dt><dd class="font-medium"><%= @booking.passenger_name %></dd></div>
+    <div><dt class="text-gray-500">Documento</dt><dd class="font-medium"><%= @booking.passenger_document %></dd></div>
+    <div><dt class="text-gray-500">Vehículo</dt><dd class="font-medium"><%= @trip.vehicle.plate %></dd></div>
+    <div><dt class="text-gray-500">Asiento</dt><dd class="text-lg font-bold"><%= @booking.seat_number %></dd></div>
+    <div><dt class="text-gray-500">Valor</dt><dd class="font-medium"><%= number_to_currency @trip.fare %></dd></div>
+    <div><dt class="text-gray-500">Vendido por</dt><dd class="font-medium"><%= @booking.user.email_address %></dd></div>
+  </dl>
+
+  <footer class="border-t border-dashed border-gray-300 pt-4 text-xs text-gray-500">
+    Emitido el <%= l @booking.created_at, format: :short %>
+  </footer>
+</article>
+
+<div class="mt-6 flex flex-wrap justify-center gap-2 print:hidden" data-controller="print">
+  <button type="button" class="btn btn-secondary" data-action="print#print">Imprimir</button>
+  <% if @booking.reserved? %>
+    <%= button_to "Marcar como pagado", pay_trip_booking_path(@trip, @booking), method: :patch, class: "btn btn-primary" %>
+  <% end %>
+  <% unless @booking.cancelled? %>
+    <%= button_to "Cancelar pasaje", cancel_trip_booking_path(@trip, @booking), method: :patch, class: "btn btn-danger", data: { turbo_confirm: "¿Cancelar este pasaje? El asiento quedará libre." } %>
+  <% end %>
+  <%= link_to "Volver al viaje", @trip, class: "btn btn-secondary" %>
+</div>
