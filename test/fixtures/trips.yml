@@ -1,0 +1,23 @@
+bogota_medellin:
+  origin: bogota
+  destination: medellin
+  vehicle: bus
+  departure_at: <%= 2.days.from_now.change(hour: 8) %>
+  fare: 80000
+  status: scheduled
+
+bogota_cali_van:
+  origin: bogota
+  destination: cali
+  vehicle: van
+  departure_at: <%= 3.days.from_now.change(hour: 10) %>
+  fare: 95000
+  status: scheduled
+
+finished:
+  origin: medellin
+  destination: bogota
+  vehicle: bus
+  departure_at: <%= 2.days.ago.change(hour: 8) %>
+  fare: 80000
+  status: finished

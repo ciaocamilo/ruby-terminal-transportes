@@ -1,0 +1,35 @@
+<%= form_with model: vehicle, class: "card max-w-2xl space-y-5" do |form| %>
+  <%= render "shared/form_errors", record: vehicle %>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <%= form.label :plate, class: "label" %>
+      <%= form.text_field :plate, required: true, autofocus: true, class: field_classes(vehicle, :plate) %>
+    </div>
+
+    <div>
+      <%= form.label :driver, class: "label" %>
+      <%= form.text_field :driver, required: true, class: field_classes(vehicle, :driver) %>
+    </div>
+
+    <div>
+      <%= form.label :kind, class: "label" %>
+      <%= form.select :kind, enum_options(Vehicle, :kind), {}, class: field_classes(vehicle, :kind) %>
+    </div>
+
+    <div>
+      <%= form.label :capacity, class: "label" %>
+      <%= form.number_field :capacity, required: true, min: 1, max: 80, class: field_classes(vehicle, :capacity) %>
+    </div>
+
+    <div>
+      <%= form.label :status, class: "label" %>
+      <%= form.select :status, enum_options(Vehicle, :status), {}, class: field_classes(vehicle, :status) %>
+    </div>
+  </div>
+
+  <div class="flex gap-3">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", vehicle.persisted? ? vehicle : vehicles_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

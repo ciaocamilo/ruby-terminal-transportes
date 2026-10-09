@@ -1,0 +1,5 @@
+<% flash.each do |type, message| %>
+  <div id="flash_<%= type %>" role="status" class="mb-6 rounded-md px-4 py-3 text-sm font-medium print:hidden <%= type == "notice" ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800" %>">
+    <%= message %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<% content_for :title, "Viajes" %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold">Viajes</h1>
+  <%= link_to "Nuevo viaje", new_trip_path, class: "btn btn-primary" if admin? %>
+</div>
+
+<%= form_with url: trips_path, method: :get, class: "card mb-6 grid items-end gap-4 sm:grid-cols-2 lg:grid-cols-5",
+      data: { turbo_frame: "trips_results", turbo_action: "advance" } do |form| %>
+  <div>
+    <%= form.label :origin_id, "Origen", class: "label" %>
+    <%= form.select :origin_id, @cities.map { [ it.name, it.id ] }, { include_blank: "Todas", selected: @filters[:origin_id] }, class: "input" %>
+  </div>
+  <div>
+    <%= form.label :destination_id, "Destino", class: "label" %>
+    <%= form.select :destination_id, @cities.map { [ it.name, it.id ] }, { include_blank: "Todas", selected: @filters[:destination_id] }, class: "input" %>
+  </div>
+  <div>
+    <%= form.label :date, "Fecha", class: "label" %>
+    <%= form.date_field :date, value: @filters[:date], class: "input" %>
+  </div>
+  <div>
+    <%= form.label :status, "Estado", class: "label" %>
+    <%= form.select :status, enum_options(Trip, :status), { include_blank: "Todos", selected: @filters[:status] }, class: "input" %>
+  </div>
+  <div class="flex gap-2">
+    <%= form.submit "Buscar", name: nil, class: "btn btn-primary" %>
+    <%= link_to "Limpiar", trips_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "trips_results", data: { turbo_action: "advance" } do %>
+  <div class="card p-0">
+    <%= render "trips/table", trips: @trips %>
+  </div>
+  <%= pagination @pagy %>
+<% end %>

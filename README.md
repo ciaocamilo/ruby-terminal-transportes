@@ -1,24 +1,33 @@
-# README
+# Terminal de Transportes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Gestión de ciudades, vehículos, viajes y venta de pasajes. Rails 8.1, Ruby 3.4, SQLite, Hotwire y Tailwind CSS.
 
-Things you may want to cover:
+## Desarrollo
 
-* Ruby version
+Abrir la carpeta en VS Code y elegir **Reopen in Container** (requiere Docker). El devcontainer ejecuta `bin/setup`.
 
-* System dependencies
+```sh
+bin/rails db:seed   # usuarios admin@terminal.test y vendedor@terminal.test, clave "password"
+bin/dev             # http://localhost:3000
+```
 
-* Configuration
+Roles: el **administrador** gestiona ciudades, vehículos y viajes; el **vendedor** consulta viajes y vende pasajes.
 
-* Database creation
+## Pruebas y calidad
 
-* Database initialization
+```sh
+bin/rails test && bin/rails test:system
+bin/rubocop
+bin/brakeman
+```
 
-* How to run the test suite
+## Despliegue (Kamal)
 
-* Services (job queues, cache servers, search engines, etc.)
+Definir `KAMAL_REGISTRY_USERNAME`, `KAMAL_REGISTRY_PASSWORD`, `KAMAL_SERVER_IP`, `KAMAL_APP_HOST` y `SEED_PASSWORD`, y luego:
 
-* Deployment instructions
+```sh
+bin/kamal setup
+bin/kamal seed
+```
 
-* ...
+La versión Rails 5.1 original está en la etiqueta `legacy-rails5`.

@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-3.5 py-2 text-sm font-medium cursor-pointer transition-colors;
+  }
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-500;
+  }
+  .btn-secondary {
+    @apply bg-white text-gray-700 ring-1 ring-gray-300 hover:bg-gray-50;
+  }
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-500;
+  }
+  .card {
+    @apply rounded-lg border border-gray-200 bg-white p-6 shadow-sm;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+  .input {
+    @apply mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 shadow-sm focus:outline-2 focus:outline-blue-600;
+  }
+  .input-error {
+    @apply border-red-400 focus:outline-red-600;
+  }
+  .data-table {
+    @apply min-w-full text-sm;
+  }
+  .data-table th {
+    @apply bg-gray-50 px-4 py-3 text-left font-semibold text-gray-600;
+  }
+  .data-table td {
+    @apply border-t border-gray-100 px-4 py-3;
+  }
+  .pagy {
+    @apply mt-6 flex flex-wrap gap-1 text-sm;
+  }
+  .pagy a {
+    @apply rounded-md bg-white px-3 py-1.5 ring-1 ring-gray-300 hover:bg-gray-50;
+  }
+  .pagy a.current {
+    @apply bg-blue-600 text-white ring-blue-600;
+  }
+  .pagy a:not([href]):not(.current) {
+    @apply text-gray-400;
+  }
+}

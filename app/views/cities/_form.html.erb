@@ -1,0 +1,18 @@
+<%= form_with model: city, class: "card max-w-xl space-y-5" do |form| %>
+  <%= render "shared/form_errors", record: city %>
+
+  <div>
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, required: true, autofocus: true, class: field_classes(city, :name) %>
+  </div>
+
+  <div>
+    <%= form.label :status, class: "label" %>
+    <%= form.select :status, enum_options(City, :status), {}, class: field_classes(city, :status) %>
+  </div>
+
+  <div class="flex gap-3">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", city.persisted? ? city : cities_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

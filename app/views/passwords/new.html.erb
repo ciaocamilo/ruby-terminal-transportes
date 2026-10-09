@@ -1,0 +1,17 @@
+<% content_for :title, "Recuperar contraseña" %>
+
+<div class="mx-auto mt-12 max-w-md">
+  <h1 class="mb-6 text-center text-3xl font-bold">¿Olvidaste tu contraseña?</h1>
+
+  <%= form_with url: passwords_path, class: "card space-y-5" do |form| %>
+    <div>
+      <%= form.label :email_address, "Correo electrónico", class: "label" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address], class: "input" %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit "Enviar instrucciones", class: "btn btn-primary" %>
+      <%= link_to "Volver", new_session_path, class: "text-sm text-gray-600 underline hover:no-underline" %>
+    </div>
+  <% end %>
+</div>

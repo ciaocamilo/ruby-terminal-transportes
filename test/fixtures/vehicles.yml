@@ -1,0 +1,20 @@
+bus:
+  plate: ABC123
+  driver: Carlos Pérez
+  kind: bus
+  capacity: 40
+  status: available
+
+van:
+  plate: XYZ789
+  driver: Ana Torres
+  kind: van
+  capacity: 2
+  status: available
+
+broken:
+  plate: DEF456
+  driver: Jorge Ramírez
+  kind: buseta
+  capacity: 20
+  status: maintenance

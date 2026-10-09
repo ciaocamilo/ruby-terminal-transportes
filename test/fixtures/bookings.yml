@@ -1,0 +1,23 @@
+paid_seat_one:
+  trip: bogota_medellin
+  user: seller
+  passenger_name: María López
+  passenger_document: "1020304050"
+  seat_number: 1
+  status: paid
+
+reserved_seat_two:
+  trip: bogota_medellin
+  user: seller
+  passenger_name: Pedro Díaz
+  passenger_document: "79888777"
+  seat_number: 2
+  status: reserved
+
+cancelled_seat_three:
+  trip: bogota_medellin
+  user: seller
+  passenger_name: Laura Ríos
+  passenger_document: "52111222"
+  seat_number: 3
+  status: cancelled

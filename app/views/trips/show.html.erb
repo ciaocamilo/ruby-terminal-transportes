@@ -1,0 +1,84 @@
+<% content_for :title, "Viaje #{@trip.route}" %>
+<% taken_seats = @trip.taken_seats %>
+<% bookable = @trip.bookable? %>
+
+<div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+  <div>
+    <div class="flex items-center gap-3">
+      <h1 class="text-3xl font-bold"><%= @trip.route %></h1>
+      <%= status_badge @trip %>
+    </div>
+    <p class="mt-1 text-gray-600"><%= l @trip.departure_at, format: :long %></p>
+  </div>
+  <div class="flex gap-2">
+    <% if admin? %>
+      <%= link_to "Editar", edit_trip_path(@trip), class: "btn btn-secondary" %>
+      <%= button_to "Eliminar", @trip, method: :delete, class: "btn btn-danger", data: { turbo_confirm: "¿Eliminar este viaje?" } %>
+    <% end %>
+    <%= link_to "Volver", trips_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+
+<div class="grid gap-6 lg:grid-cols-3">
+  <section class="card">
+    <dl class="space-y-3 text-sm">
+      <div><dt class="text-gray-500">Vehículo</dt><dd class="font-medium"><%= link_to @trip.vehicle.plate, @trip.vehicle, class: "text-blue-600 hover:underline" %></dd></div>
+      <div><dt class="text-gray-500">Conductor</dt><dd class="font-medium"><%= @trip.vehicle.driver %></dd></div>
+      <div><dt class="text-gray-500">Tipo</dt><dd class="font-medium"><%= enum_label(@trip.vehicle, :kind, @trip.vehicle.kind) %></dd></div>
+      <div><dt class="text-gray-500">Valor del pasaje</dt><dd class="font-medium"><%= number_to_currency @trip.fare %></dd></div>
+      <div><dt class="text-gray-500">Cupos libres</dt><dd class="font-medium"><%= @trip.seats_left %> de <%= @trip.vehicle.capacity %></dd></div>
+    </dl>
+  </section>
+
+  <section class="card lg:col-span-2">
+    <h2 class="mb-1 text-lg font-semibold">Asientos</h2>
+    <p class="mb-4 text-sm text-gray-500">
+      <%= bookable ? "Seleccione un asiento libre para vender el pasaje." : "Este viaje no admite ventas." %>
+    </p>
+    <div id="seat_map" class="grid grid-cols-4 gap-2 sm:grid-cols-8">
+      <% (1..@trip.vehicle.capacity).each do |seat| %>
+        <% if taken_seats.include?(seat) %>
+          <span class="rounded-md bg-gray-300 py-2 text-center text-sm text-gray-600 line-through" title="Ocupado"><%= seat %></span>
+        <% elsif bookable %>
+          <%= link_to seat, new_trip_booking_path(@trip, seat_number: seat), class: "rounded-md bg-green-100 py-2 text-center text-sm font-medium text-green-800 hover:bg-green-200", title: "Libre" %>
+        <% else %>
+          <span class="rounded-md bg-gray-100 py-2 text-center text-sm text-gray-400"><%= seat %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+</div>
+
+<section class="card mt-6">
+  <h2 class="mb-4 text-lg font-semibold">Pasajes</h2>
+  <% if @bookings.any? %>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Asiento</th>
+            <th>Pasajero</th>
+            <th>Documento</th>
+            <th>Estado</th>
+            <th>Vendido por</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookings.each do |booking| %>
+            <tr id="<%= dom_id booking %>">
+              <td class="font-medium"><%= booking.seat_number %></td>
+              <td><%= booking.passenger_name %></td>
+              <td><%= booking.passenger_document %></td>
+              <td><%= status_badge booking %></td>
+              <td><%= booking.user.email_address %></td>
+              <td class="text-right"><%= link_to "Ver pasaje", trip_booking_path(@trip, booking), class: "text-blue-600 hover:underline" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="py-6 text-center text-gray-500">Aún no hay pasajes vendidos.</p>
+  <% end %>
+</section>

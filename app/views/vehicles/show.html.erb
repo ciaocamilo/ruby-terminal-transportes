@@ -1,0 +1,30 @@
+<% content_for :title, "Vehículo #{@vehicle.plate}" %>
+
+<div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+  <div class="flex items-center gap-3">
+    <h1 class="text-3xl font-bold"><%= @vehicle.plate %></h1>
+    <%= status_badge @vehicle %>
+  </div>
+  <div class="flex gap-2">
+    <% if admin? %>
+      <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-secondary" %>
+      <%= button_to "Eliminar", @vehicle, method: :delete, class: "btn btn-danger", data: { turbo_confirm: "¿Eliminar este vehículo?" } %>
+    <% end %>
+    <%= link_to "Volver", vehicles_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+
+<div class="grid gap-6 lg:grid-cols-3">
+  <section class="card">
+    <dl class="space-y-3 text-sm">
+      <div><dt class="text-gray-500">Conductor</dt><dd class="font-medium"><%= @vehicle.driver %></dd></div>
+      <div><dt class="text-gray-500">Tipo</dt><dd class="font-medium"><%= enum_label(@vehicle, :kind, @vehicle.kind) %></dd></div>
+      <div><dt class="text-gray-500">Capacidad</dt><dd class="font-medium"><%= @vehicle.capacity %> pasajeros</dd></div>
+    </dl>
+  </section>
+
+  <section class="card lg:col-span-2">
+    <h2 class="mb-4 text-lg font-semibold">Próximos viajes</h2>
+    <%= render "trips/table", trips: @upcoming_trips %>
+  </section>
+</div>

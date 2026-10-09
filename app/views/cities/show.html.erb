@@ -1,0 +1,20 @@
+<% content_for :title, @city.name %>
+
+<div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+  <div class="flex items-center gap-3">
+    <h1 class="text-3xl font-bold"><%= @city.name %></h1>
+    <%= status_badge @city %>
+  </div>
+  <div class="flex gap-2">
+    <% if admin? %>
+      <%= link_to "Editar", edit_city_path(@city), class: "btn btn-secondary" %>
+      <%= button_to "Eliminar", @city, method: :delete, class: "btn btn-danger", data: { turbo_confirm: "¿Eliminar esta ciudad?" } %>
+    <% end %>
+    <%= link_to "Volver", cities_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+
+<section class="card">
+  <h2 class="mb-4 text-lg font-semibold">Próximos viajes</h2>
+  <%= render "trips/table", trips: @upcoming_trips %>
+</section>

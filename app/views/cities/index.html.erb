@@ -1,0 +1,32 @@
+<% content_for :title, "Ciudades" %>
+
+<div class="mb-6 flex items-center justify-between">
+  <h1 class="text-3xl font-bold">Ciudades</h1>
+  <%= link_to "Nueva ciudad", new_city_path, class: "btn btn-primary" if admin? %>
+</div>
+
+<% if @cities.any? %>
+  <div class="card overflow-x-auto p-0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cities.each do |city| %>
+          <tr id="<%= dom_id city %>">
+            <td><%= link_to city.name, city, class: "font-medium text-blue-600 hover:underline" %></td>
+            <td><%= status_badge city %></td>
+            <td class="text-right"><%= link_to "Editar", edit_city_path(city), class: "text-blue-600 hover:underline" if admin? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= pagination @pagy %>
+<% else %>
+  <p class="py-10 text-center text-gray-500">No hay ciudades registradas.</p>
+<% end %>

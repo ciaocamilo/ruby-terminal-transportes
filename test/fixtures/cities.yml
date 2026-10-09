@@ -1,0 +1,15 @@
+bogota:
+  name: Bogotá
+  status: active
+
+medellin:
+  name: Medellín
+  status: active
+
+cali:
+  name: Cali
+  status: active
+
+tunja:
+  name: Tunja
+  status: inactive

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <title><%= content_for(:title) || "Terminal Transportes" %></title>
+    <title><%= content_for(:title) || "Terminal de Transportes" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,8 +22,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="min-h-screen bg-gray-50 text-gray-900">
+    <%= render "layouts/navbar" if authenticated? %>
+    <main class="mx-auto max-w-6xl px-4 py-8">
+      <%= render "layouts/flash" %>
       <%= yield %>
     </main>
   </body>
